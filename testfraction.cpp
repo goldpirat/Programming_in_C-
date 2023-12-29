@@ -1,6 +1,6 @@
 /*
 CH-230-A
-a12 p4.cpp
+a12 p5.cpp
 Flori Kusari
 fkusari@jacobs-university.de
 */
@@ -10,8 +10,7 @@ fkusari@jacobs-university.de
 
 using namespace std;
 
-int main()
-{
+int main(){
 	// create and print fractions with given parameters
     Fraction a(4, 2);
     Fraction b(17, 11);
@@ -33,15 +32,20 @@ int main()
 	cin >> e;
     cout << "Enter fraction (2):" << endl;
 	cin >> f;	
-	cout << "\nFraction (1): ";
-    cout << e << endl;
-    cout << "Fraction (2): ";
+	cout << "\nFraction (1): " << e << endl;
+    cout << "Fraction (2): " << f << endl;
 	
-	// compute and print their product and division
-	cout << f << endl; 
-    cout << "\nProduct of fractions:" << endl;
-	cout << e*f << endl;
-    cout << "\nDivision of fractions:" << endl;
-    cout << e/f << endl;
+	// compute and print results for each overloaded operator 
+    cout << "\nProduct of fractions:" << e*f << endl;
+    cout << "\nDivision of fractions:" << e/f << endl;
+	cout << "\nSum of fractions:" << e+f << endl;
+	cout << "\nDifference between fractions:" << e-f << endl;
+    cout << "\nFraction " << (e > f ? e : f) << " is larger than " 
+	<< (e < f ? e : f) << endl;
+	Fraction x = Fraction(2, 3);
+	cout << "\nFraction x = " << x << endl;
+	Fraction y = x;
+	cout << "\nFraction y equal to x = " << y << endl;
+	
 	return 0;
 }

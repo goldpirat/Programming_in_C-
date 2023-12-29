@@ -1,6 +1,6 @@
 /*
 CH-230-A
-a12 p4.h
+a12 p5.h
 Flori Kusari
 fkusari@jacobs-university.de
 */
@@ -30,7 +30,16 @@ public:
     friend istream& operator>>(istream&, Fraction&);
     Fraction operator*(Fraction&);
     Fraction operator/(Fraction&);
+    
     // overloaded operators instead of print() service method
+    // new operations
+    Fraction operator+ (const Fraction&);
+    Fraction operator- (const Fraction&);
+    Fraction& operator= (const Fraction&);
+    bool operator>(const Fraction&);
+    bool operator<(const Fraction&);
+    // fractions are entered as num / num in cin.
+    // entering a 0 as a denominator is not allowed
 };
 
 #endif /* FRACTION_H_ */
