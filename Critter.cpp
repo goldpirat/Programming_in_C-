@@ -1,55 +1,37 @@
 /*
 CH-230-A
-a10 p2.cpp
+a10 p4.cpp
 Flori Kusari
 fkusari@jacobs-university.de
 */
+
 #include <iostream>
+#include <string>
 #include "Critter.h"
 
 using namespace std;
 
-void Critter::setName(string& newname) {
-    name = newname;
+Critter::Critter(){
+	name = "default_critter";
+	height = 5;
+	hunger = boredom = 0;
+	
 }
 
-void Critter::setHunger(int newhunger) {
-    hunger = newhunger;
+Critter::Critter(string n){
+	name = n;
+	height = 5;
+	hunger = boredom = 0;
 }
 
-void Critter::setHeight(double newheight) {
-    height = newheight;
+Critter::Critter(string n, int hu, int b, int he){
+	name = n;
+	hunger = hu;
+	boredom = b;
+	height = he;
 }
 
-void Critter::setHealth(int newHealth) {
-    health = newHealth;
-}
-
-void Critter::setIsCSMajor(bool newIsCSMajor) {
-    isCSMajor = newIsCSMajor;
-}
-
-void Critter::print() {
-    cout << "I am " << name << "." << endl;
-    cout << "My hunger level is " << hunger << "." << endl;
-    cout << "My height is " << height << "." << endl;
-    cout << "My health is " << health << "." << endl;
-    cout << "Am I Depressed? " << (isCSMajor ? "Yes" : "No") << "." << endl;
-    // I thought this was more fun than just creating another number variable. 
-}
-
-int Critter::getHunger() {
-    return hunger;
-}
-
-double Critter::getHeight() {
-    return height;
-}
-
-int Critter::getHealth() {
-    return health;
-}
-
-bool Critter::getIsCSMajor() {
-    return isCSMajor;
+void Critter::print(){
+	cout<<"Critter Data:\n"<<"Name = "<<name<<"\nHunger = "<<hunger
+	<<"\nBoredom = "<<boredom<<"\nHeight = "<<height<<"\n\n";
 }
