@@ -1,196 +1,135 @@
 /*
 CH-230-A
-a11 p5.cpp
+a12 p1.cpp
 Flori Kusari
 fkusari@jacobs-university.de
 */
 
 #include <iostream>
-#include <cmath>
 #include <string>
+#include <cmath>
 #include "Shapes.h"
 
-using namespace std;
+using namespace std; 
 
-// Base class representing a generic shape
+// Implementation of the Shape class
 Shape::Shape(const string& n) : name(n) {
+    // Constructor with a parameter
 	name = n;
 }
-
 Shape::Shape(){
+    // Default constructor
 	name = "default_name";
 }
-
 Shape::Shape(const Shape& sh){
+    // Copy constructor
 	name = sh.name;
 }
-
-void Shape::Shape::printName() const {
+void Shape::printName() const {
+    // Prints the name of the shape
 	cout << name << endl;
 }
 
-void Shape::setName(string n){
-	name = n;
-}
-
-string Shape::getName(){
-	return name;
-}
-
-// Derived class representing a centered shape
-CenteredShape::CenteredShape(const string& n, double nx, double ny):Shape(n) {
+// Implementation of the CenteredShape class
+CenteredShape::CenteredShape(const string& n, double nx, double ny): Shape(n) {
+    // Constructor with parameters
 	x = nx;
 	y = ny;
 }
-
 CenteredShape::CenteredShape(){
+    // Default constructor
 	x = 0;
-	y = 0;	
+	y = 0;
 }
-
 CenteredShape::CenteredShape(const CenteredShape& cs){
+    // Copy constructor
 	x = cs.x;
 	y = cs.y;
 }
-
 void CenteredShape::move(double nx, double ny){
+    // Moves the shape to a new position
 }
 
-void CenteredShape::getX(double nx){
-	x = nx;
-}
-
-void CenteredShape::getY(double ny){
-	y = ny;
-}
-
-double CenteredShape::setX(){
-	return x;
-}
-
-double CenteredShape::setY(){
-	return y;
-}
-
-// Derived class representing a regular polygon
 RegularPolygon::RegularPolygon(const string& n, double nx, double ny, int nl) :
-CenteredShape(n,nx,ny) {
+	CenteredShape(n,nx,ny) 
+{
+    // Constructor with parameters
 	EdgesNumber = nl;
 }
-
 RegularPolygon::RegularPolygon(){
+    // Default Constructor
 	EdgesNumber = 0;
 }
-
 RegularPolygon::RegularPolygon(const RegularPolygon& rp){
+    //Copy Constructor
 	EdgesNumber = rp.EdgesNumber;
 }
 
-void RegularPolygon::getEdgesNumber(int en){
-	EdgesNumber = en;
+Hexagon::Hexagon(const string& n, double nx, double ny, double ns, const 
+string& nc):RegularPolygon(n,nx,ny,6)
+{
+    // Constructor with parameters
+	side = ns;
+	color = nc;
 }
-
-int RegularPolygon::setEdgesNumber(){
-	return EdgesNumber;
-}
-
-// Derived class representing a circle
-Circle::Circle(const string& n, double nx, double ny, double r) : 
-CenteredShape(n,nx,ny) {
-	Radius = r;
-}
-
-Circle::Circle(){
-	Radius = 0;
-}
-
-Circle::Circle(const Circle& c){
-	Radius = c.Radius;
-}
-
-void Circle::getRadius(double r){
-	Radius = r;
-}
-
-double Circle::setRadius(){
-	return Radius;
-}
-
-double Circle::perimeter(){
-	return 2*M_PI*Radius;
-}
-
-double Circle::area(){
-	return M_PI*Radius*Radius;
-}
-
-// Derived class representing a rectangle
-Rectangle::Rectangle(const string& n, double nx, double ny, double nwidth, 
-double nheight):RegularPolygon(n,nx,ny,nwidth){
-	width = nwidth;
-	height = nheight;
-}
-
-Rectangle::Rectangle(){
-	width = 0;
-	height = 0;
-}
-
-Rectangle::Rectangle(const Rectangle& r){
-	width = r.width;
-	height = r.height;
-}
-
-void Rectangle::getWidth(double w){
-	width = w;
-}
-
-void Rectangle::getHeight(double h){
-	height = h;
-}
-
-double Rectangle::setWidth(){
-	return width;
-}
-
-double Rectangle::setHeight(){
-	return height;
-}
-
-double Rectangle::perimeter(){
-	return 2*(width+height);
-}
-
-double Rectangle::area(){
-	return width*height;	
-}
-
-// Derived class representing a square 
-Square::Square(const string& n, double nx, double ny, double nside):
-Rectangle(n,nx,ny,nside,nside){
-	side = nside;
-}
-
-Square::Square(){
+Hexagon::Hexagon(){
+    // Default Constructor
 	side = 0;
+	color = "default_color";
+}
+Hexagon::Hexagon(const Hexagon& h){
+    //Copy Constructor
+	side = h.side;
+	color = h.color;
+	name = h.name;
+	x = h.x;
+	y = h.y;
+}
+Hexagon::~Hexagon(){
+    // Destructor
+    cout << "Hexagon destructed" << endl;
+    // Not really necessary I did this for fun.
+    // By which I mean the printout of the destructor not the destructor itself
+}
+	
+void Hexagon::setSide(double ns){
+    // Sets the side length of the hexagon
+	side = ns;
+}
+void Hexagon::setColor(const string& nc){
+	// Sets the color of the hexagon
+	color = nc;
 }
 
-Square::Square(const Square& s){
-	side = s.side;
-}
-
-void Square::setSide(double nside){
-	side = nside;
-}
-
-double Square::getSide(){
+double Hexagon::getSide(){
+    // Gets the side length of the hexagon
 	return side;
 }
-
-double Square::perimeter(){
-	return 4*side;
+const string& Hexagon::getColor(){
+    // Gets the color of the hexagon
+	return color;
 }
 
-double Square::area(){
-	return side*side;
+double Hexagon::perimeter(){
+    // Calculates the perimeter of the hexagon
+	return 6*side;
+}
+double Hexagon::area(){
+    // Calculates the area of the hexagon
+	return ((3*sqrt(3)*side*side)/2);
+}
+
+Circle::Circle(const string& n, double nx, double ny, double r) : 
+  CenteredShape(n,nx,ny) 
+{
+    // Constructor with parameters
+	Radius = r;
+}
+Circle::Circle(){
+    // Default constructor
+	Radius = 0;
+}
+Circle::Circle(const Circle& c){
+    // Copy constructor
+	Radius = c.Radius;
 }
