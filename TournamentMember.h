@@ -1,6 +1,6 @@
 /*
 CH-230-A
-a12 p2.h
+a12 p3.h
 Flori Kusari
 fkusari@jacobs-university.de
 */
@@ -17,16 +17,15 @@ class TournamentMember{
 		char birthday[11];
 		float height;
 		int age;
-		static std::string location;
+		static string location;
 		
 	public:
-		// Constructors and destructor
+	// Constructors and destructor
 		TournamentMember();
 		TournamentMember(const char*, const char*, const char*, float, int);
 		TournamentMember(const TournamentMember&);
 		~TournamentMember();
 		
-		// Setters:
 		void setFirstName(const char* fn){
 		    int i;
 		    for(i=0; i<36; i++){
@@ -56,15 +55,15 @@ class TournamentMember{
 		    age = a;
 		}
 		
-		std::string getFirstName(){
+		string getFirstName(){
 		    return firstname;
 		}
 		
-		std::string getLastName(){
+		string getLastName(){
 		    return lastname;
 		}
 		
-		std::string getBirthday(){
+		string getBirthday(){
 		    return birthday;
 		}
 		
@@ -76,8 +75,57 @@ class TournamentMember{
 		    return age;
 		}
 		
+
 		void printMember();
+				
+
+		static void changeLocation(string);
 		
-		static void changeLocation(std::string);
+};
+
+class Player:public TournamentMember{
+	// Data members for player-specific information
+	private: 
+		int number;
+		string position; 
+		int goals;
+		string foot;
+	public:
+		// Constructors and destructor for Player class
+		Player();
+		Player(const char*, const char*, const char*, float, int, int, 
+		string, int, string);
+		Player(const Player&);
 		
+		~Player();
+		
+		void setNumber(int n){
+			number = n;
+		}
+		void setPosition(string p){
+			position = p;
+		}
+		void setFoot(string f){
+			foot = f;
+		}
+		void setGoals(int g){
+			goals = g;
+		}
+
+		int getNumber(){
+			return number;
+		}
+		string getPosition(){
+			return position;
+		}
+		string getFoot(){
+			return foot;
+		}
+		int getGoals(){
+			return goals;
+		}
+		
+		void printPlayer();
+		
+		void incrementGoals();
 };
