@@ -1,6 +1,6 @@
 /*
 CH-230-A
-a10 p1.cpp
+a10 p2.cpp
 Flori Kusari
 fkusari@jacobs-university.de
 */
@@ -9,24 +9,41 @@ fkusari@jacobs-university.de
 #include <cstdlib>
 #include "Critter.h"
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
     Critter c;
 
-    std::string name;
+    string name;
     int hunger;
+    double height;
+    int health;
+    bool isCSMajor;
 
-    std::cout << std::endl << "Please enter data: " << std::endl;
-    std::cout << "Name: ";
-    // cin >> name; will not work if name contains
-    // spaces
-    getline(std::cin, name);
+    cout << endl << "Please enter the following data: " << endl;
+    cout << "Name: ";
+    getline(cin, name);
     c.setName(name);
-    std::cout << "Hunger: ";
-    std::cin >> hunger;
+
+    cout << "Hunger [1-10]: ";
+    cin >> hunger;
     c.setHunger(hunger);
 
-    std::cout << "You have created:" << std::endl;
+    cout << "Height: ";
+    cin >> height;
+    c.setHeight(height);
+
+    cout << "Health Level [1-10]: ";
+    cin >> health;
+    c.setHealth(health);
+
+    cout << "Is the critter a CS Major? (1 for Yes, 0 for No): ";
+    cin >> isCSMajor;
+    c.setIsCSMajor(isCSMajor);
+
+    cout << "Your creation is:" << endl;
     c.print();
+
     return 0;
 }
